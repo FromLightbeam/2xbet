@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+ <img class="bet_img" src="{% static '../static/img/bet.png' %}" alt="" />
+ <form class="sign_log_form"  action="/accaunt/signup/" method="post">
+   {% csrf_token %}
+   {{form.as_p}}
+   <input class="btn btn-primary" type="submit" name="name" value="Sign Up">
+ </form>
+{% endblock %}

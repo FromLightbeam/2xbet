@@ -1,0 +1,89 @@
+.Lister{
+width:  1200px;
+height:  540px;
+}
+
+
+.Lister_2{
+  height: 540px;
+  width: 1200px;
+  margin-top: 15px;
+}
+
+
+.Lister_f{
+  height: 100px;
+  width: 180px;
+  float: left;
+}
+.Center_f{
+  height: 150px;
+  width: 400px;
+  float: left;
+  margin-top: 70px;
+  margin-left: 180px;
+  font-size: 60px;
+  color: #D95961;
+}
+
+.Center_f_data{
+  height: 150px;
+  width: 400px;
+  float: left;
+  margin-top: 70px;
+  margin-left: 180px;
+  font-size: 60px;
+  color: #D95961;
+}
+
+.Up_Listener{
+  width: auto;
+  height: 200px;
+}
+
+.Down_Listener{
+  width: auto;
+  height: 130px;
+}
+
+
+.menu {
+width: 350px;
+float: left;
+padding-top: 5px;
+border: 1px solid rgba(0,0,0, .2);
+}
+
+.menu li {
+overflow: hidden;
+padding: 6px 10px;
+font-size: 20px;
+}
+.menu li:first-child {
+font-weight: bold;
+padding: 15px 0 10px 15px;
+margin-bottom: 10px;
+border-bottom: 1px solid rgba(0,0,0, .2);
+border-bottom-left-radius: 10px;
+border-bottom-right-radius: 10px;
+color: #D95961;
+font-size: 24px;
+box-shadow: 0 10px 20px -5px rgba(0,0,0, .2);
+}
+.menu li:first-child:before {
+content: "\2749";
+margin-right: 10px;
+}
+.menu span {
+float: left;
+width: 75%;
+color: #7C7D7F;
+}
+.menu em {
+float: right;
+color: #9c836e;
+font-weight: bold;
+}
+.menu:hover{
+  background: #5B494A;
+}

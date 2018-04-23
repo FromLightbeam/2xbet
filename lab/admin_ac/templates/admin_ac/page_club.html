@@ -1,0 +1,125 @@
+{% extends 'admin_ac/page.html' %}
+
+{% block content1 %}
+<div class="list_nav">
+  <ul class="nav nav-tabs">
+    <li >
+      <a href="/admin/user/">Users</a>
+    </li>
+    <li class="active ">
+      <a href="/admin/club/">Clubs</a>
+    </li>
+    <li>
+      <a href="/admin/match/">Match</a>
+    </li>
+    <li>
+      <a href="/admin/logs/">Logs</a>
+    </li>
+    <li>
+      <a href="/admin/bets/">Bets</a>
+    </li>
+    </ul>
+</div>
+<div class="obj_content">
+  <div class="obj_content1">
+    <table class="table">
+      <thead>
+        <tr class="w_text">
+          <th>
+            #
+          </th>
+          <th>
+            club
+          </th>
+          <th>
+            count
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bord ">
+        {% for item in clubs %}
+        <tr class="w_text">
+          <th scope="row">
+            {{item.0}}
+          </th>
+          <td>
+            {{item.1}}
+          </td>
+          <td>
+            {{item.3}}
+          </td>
+          <td>
+            <a  class="a_poss" href="/admin/del_club/{{item.0}}"><i class="icon-remove icon-white "></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+  <div class="obj_content2">
+          <button id="click_me" class="button_add" type="button" name="button">
+            <i class="icon-plus btn_i"> </i>
+          </button>
+    </div>
+        <div id="popup" class="popup"  >
+          <h2 class="popup_title" > Add club</h2>
+          <form class="" id="form_club"  >{% csrf_token %}
+            <input class="in_club" id="name" type="text" name="name" value=""><br>
+            <button id="create" class="btn_club" type="submit" name="button">create</button>
+          </form>
+            <div id="btn_close" class="btn_close"><i class="icon-remove icon-white"></i></div>
+          </div>
+
+          <script >
+          $(document).on('submit', '#form_club', function(e){
+            e.preventDefault();
+            $.ajax({
+              type:'POST',
+              url:'/admin/create_club/',
+              data: {
+                name:$('#name').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+              },
+              success:function(){
+                $('#name').val('');
+              }
+            });
+          });
+
+          $(function() {
+            $('#popup').hide();
+            $('#hide_layout').hide()
+            $('#hide_layout').css({opacity: .5});
+
+            alignCenter($('#popup'));
+
+            $(window).resize(function(){
+              alignCenter($('#popup'));
+            })
+            $('#create').click(function() {
+
+            })
+
+            $('#click_me').click(function(){
+              $('#hide_layout, #popup').fadeIn(300);
+            })
+
+            $('#btn_close, #hide_layout').click(function(){
+              $('#hide_layout, #popup').fadeOut(300);
+            })
+
+
+            function alignCenter(elem) {
+              elem.css({
+                left: ($(window).width() - elem.width() - 800) / 2 + 'px',
+                top: ($(window).height() - elem.height()) / 2 + 'px'
+              })
+            }
+          })
+          </script>
+
+          <div id="hide_layout" class="hide_layout" ></div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,404 @@
+
+body {
+  background-color: #212020;
+}
+
+.baner {
+  width:  1200px;
+  height:  50px;
+  background-color: #A60000;
+  margin: auto;
+  color:  white;
+  margin-top: 10px;
+  border-radius: 2px 2px 5px 5px;
+  position: relative;
+}
+
+.log_cls {
+  position: absolute;
+  width: 200px;
+  top: 5px;
+  right: 10px;
+}
+
+.btn_login {
+  position: relative;
+  margin-left: 10px;
+  background: #262426;
+  height: 40px;
+}
+
+.btn_login:hover {
+  background: #423E42;
+}
+
+.user_img {
+  width: 18px;
+  margin-left: 2px;
+  margin-top: -1px;
+}
+
+input:focus:invalid:focus {
+  border-color: none;
+}
+
+input:focus:invalid {
+  border-color: none;
+}
+
+.container_1 {
+  width: 1200px;
+  margin: auto;
+}
+
+.sign_log_form {
+  width: 230px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.text_login {
+  font-size: 30px;
+  color: white;
+  width: 200px;
+  margin: auto;
+  margin-top: 40px;
+}
+
+form label {
+  color: white;
+}
+
+.bet_img {
+  width: 280px;
+  margin-left: 460px;
+  margin-top: 10px;
+}
+
+.text {
+  color: white;
+}
+
+.log_name {
+  font-family: sans-serif;
+  font-size: 20px;
+  width: 200px;
+  float: left;
+  text-align: right;
+  position: absolute;
+  top:16px;
+  right: 105px;
+}
+
+.log_name a{
+  color: white;
+  text-decoration: none;
+}
+
+
+
+.btn_logout {
+  position: absolute;
+  top:5px;
+  right: 20px;
+}
+
+#imgan {
+  margin-left: 350px;
+  margin-top: 30px;
+}
+
+
+.admin_img {
+  position: absolute;
+  width: 50px;
+  right: 100px;
+  top: 0px;
+}
+
+.text_w li a{
+  color: white;
+}
+
+.list_nav {
+margin-top: 80px;
+}
+
+.w_text {
+  color: white;
+}
+
+.obj_content {
+  margin-top: 30px;
+}
+
+.bord td {
+  border-top:1px solid #462626;
+}
+
+.bord th {
+  border-top:1px solid #462626;
+}
+
+
+.bord1 td {
+  border-top:none;
+}
+
+.bord1 th {
+  border-top:none;
+}
+
+.obj_content1 {
+ width: 1000px;
+ float: left;
+}
+
+.obj_content2 {
+  width: 200px;
+  margin-left: 1000px;
+}
+
+.button_add {
+  width: 60px;
+  height: 60px;
+  border-radius: 50% ;
+  background-color: #A60000;
+  border: 1px solid white;
+  margin-left: 60px;
+  margin-top: 30px;
+}
+
+.button_add:hover {
+  border: 2px solid grey;
+}
+
+.button_add:focus {
+  outline: none;
+}
+
+.hide_layout {
+  background: #000;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 998;
+
+}
+
+.popup {
+  width: 400px;
+  height: 200px;
+  background-color: #A69898;
+  border: 2px solid #000;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 999;
+  margin-left: 25%;
+  margin-top: -80px;
+
+}
+
+
+.popup_title {
+  margin-top: 0px;
+  border-radius: 5px 5px 0 0;
+ background-color: #171515;
+ border: 2px solid #000;
+ border-bottom: none;
+ color: #99111C;
+ padding: 0 0 0 10px;
+}
+
+.in_club {
+  width: 350px;
+  margin-left: 18px;
+  margin-top: 20px;
+}
+
+.btn_club {
+  background-color: #171515;
+  width: 100px;
+  height: 30px;
+  color: #99111C;
+  font-size: 18px;
+  margin-left: 35%;
+  margin-top: 20px;
+  border: 1px solid #857B7C;
+  line-height: normal;
+}
+
+.btn_club:hover {
+  background-color: #2B2727;
+  border: 1px solid white;
+}
+
+.btn_close {
+  right: 10px;
+  top: 10px;
+  position: absolute;
+}
+
+
+.btn_close:hover {
+  top:8px;
+}
+
+.loc_pos {
+  margin-top: 0px;
+  margin-left: 0px;
+  width: 70px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.del_pos {
+  margin-top: 0px;
+  margin-left:  0px;
+  width: 70px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.txt_cash {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.a_poss {
+  background-color: red;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.form_create {
+  margin-top: 70px;
+  margin-left: 500px;
+}
+
+.title_c {
+ color: #99111C;
+ padding: 0 0 0 15px;
+}
+
+.t_m {
+ padding: 0 0 0 300px;
+}
+
+
+.form_create1 {
+  margin-top: 70px;
+  margin-left: 230px;
+}
+
+.formmatch1 {
+  margin-top: 20px;
+  width: 800px;
+  position: relative;
+  background-color: red;
+}
+
+.formmatch1 p:nth-child(1) {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.formmatch1 p:nth-child(2) {
+    position: absolute;
+    top: 10px;
+    left: 270px;
+}
+
+.formmatch1 p:nth-child(3) {
+  position: absolute;
+  top: 10px;
+  left: 540px;
+}
+
+
+.formmatch1 p:nth-child(4) {
+  position: absolute;
+  top: 90px;
+  left: 540px;
+}
+
+
+.formmatch1 p:nth-child(5) {
+  position: absolute;
+  top: 90px;
+  left: 10px;
+}
+
+
+.formmatch1 p:nth-child(6) {
+  position: absolute;
+  top: 90px;
+  left: 270px;
+}
+
+.btn_sv {
+  margin-top: 180px;
+  margin-left: 290px;
+  float: left;
+  background: #262426;
+}
+
+.btn_dl {
+  margin-top: 180px;
+  margin-left: 40px;
+  float: left;
+  background: #262426;
+}
+
+.h1_t {
+ position: absolute;
+ top: 40px;
+ left: 350px;
+}
+
+.menu_user {
+  position: absolute;
+  width: 200px;
+  top:40px;
+  right: 15px;
+  background-color: #1C1919;
+  border-radius: 5px;
+  border: 1px solid #1A191C;
+
+}
+
+.user_contr{
+  width: 1200px;
+  position: relative;
+  height: 150px;
+}
+
+.p_textmoney {
+  position: absolute;
+  top: 120px;
+  left: 530px;
+}
+
+.menu_user ul li {
+  width: 180px;
+  margin-top: 10px;
+  list-style: none;
+  margin-left: -25px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+
+.menu_user ul li:hover {
+  margin-top: 10px;
+  list-style: none;
+  background-color:#2F2E33;
+}

@@ -1,0 +1,112 @@
+
+.obj_content1 {
+ width: 1000px;
+ float: left;
+}
+
+.obj_content2 {
+  width: 200px;
+  margin-left: 1000px;
+}
+
+.button_add {
+  width: 60px;
+  height: 60px;
+  border-radius: 50% ;
+  background-color: #A60000;
+  border: 1px solid white;
+  margin-left: 60px;
+  margin-top: 30px;
+}
+
+.button_add:hover {
+  border: 2px solid grey;
+}
+
+.button_add:focus {
+  outline: none;
+}
+
+.hide_layout{
+  left: 0;
+  height: 100%;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 998;
+}
+
+
+.popup {
+  width: 400px;
+  height: 200px;
+  background-color: #A69898;
+  border: 2px solid #000;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 999;
+  margin-left: 25%;
+  margin-top: -80px;
+}
+
+.popup_title {
+  margin-top: 0px;
+  border-radius: 5px 5px 0 0;
+ background-color: #171515;
+ border: 2px solid #000;
+ border-bottom: none;
+ color: #99111C;
+ padding: 0 0 0 10px;
+}
+
+.in_club {
+  width: 350px;
+  margin-left: 18px;
+  margin-top: 20px;
+}
+
+.btn_club {
+  background-color: #171515;
+  width: 100px;
+  height: 30px;
+  color: #99111C;
+  font-size: 18px;
+  margin-left: 35%;
+  margin-top: 20px;
+  border: 1px solid #857B7C;
+  line-height: normal;
+}
+
+.btn_club:hover {
+  background-color: #2B2727;
+  border: 1px solid white;
+}
+
+.btn_close {
+  right: 10px;
+  top: 10px;
+  position: absolute;
+}
+
+
+.loc_pos {
+  margin-top: 0px;
+  margin-left: 0px;
+  width: 70px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.del_pos {
+  margin-top: 0px;
+  margin-left:  0px;
+  width: 70px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.txt_cash {
+  margin-top: 20px;
+  margin-left: 10px;
+}

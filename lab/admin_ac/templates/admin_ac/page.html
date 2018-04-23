@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block login %}
+<a href="/admin/">
+  <img class="admin_img" src="{% static '../static/img/king1.png' %}" alt="" />
+</a>
+<a href="/admin/logout/">
+  <button class="btn btn-primary btn_login btn_logout" type="button" name="button">Log Out</button>
+</a>
+{% endblock %}
+
+{% block content %}
+{% if admin %}
+<h1 class = "text">{{admin.first_name}} {{admin.last_name}} ({{admin.username}}) </h1>
+  {% block content1 %}
+  <div class="list_nav">
+    <ul class="nav nav-tabs">
+      <li class="active ">
+        <a href="/admin/user/">Users</a>
+      </li>
+      <li>
+        <a href="/admin/club/">Clubs</a>
+      </li>
+      <li>
+        <a href="/admin/match/">Match</a>
+      </li>
+      <li>
+        <a href="/admin/logs/">Logs</a>
+      </li>
+      <li>
+        <a href="/admin/bets/">Bets</a>
+      </li>
+      </ul>
+  </div>
+  <div class="obj_content">
+    <table class="table">
+      <thead>
+        <tr class="w_text">
+          <th>
+            #
+          </th>
+          <th>
+            First Name
+          </th>
+          <th>
+            Last Name
+          </th>
+          <th>
+            Username
+          </th>
+          <th>
+            Cash
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bord">
+      {% for item in list_user %}
+      <tr class="w_text">
+        <th scope="row">
+        <a href="/admin/userprop/{{item.id}}"> {{item.id}}</a>
+        </th>
+        <td>
+          {{item.first_name}}
+        </td>
+        <td>
+          {{item.last_name}}
+        </td>
+        <td>
+          {{item.username}}
+        </td>
+        <td>
+          {{item.money}}
+        </td>
+          </tr>
+          </a>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endblock %}
+  {% else %}
+
+  <img src="{% static '../static/img/anonym.png' %}" class="img-circle" id="imgan" alt="" />
+{% endif %}
+{% endblock %}

@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script src="{% static 'js/AjaxConfig.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.js' %}"></script>
+    <script src="{% static 'js/jquery_numeric.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'DataTables/media/css/jquery.dataTables.css' %}">
+    <script src="{% static 'DataTables/media/js/jquery.dataTables.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/petrusStyle.css' %}">
+
+    <title>bet clic</title>
+  </head>
+  <body>
+    <div class="baner">
+        {% block login %}
+        {% if q %}
+        <p class="log_name">
+          <a href="/accaunt/user/">{{user.username}}</a>
+        </p>
+        <a href="/accaunt/logout/">
+          <button class="btn btn-primary btn_login btn_logout" type="button" name="button">Log Out</button>
+        </a>
+        {% else %}
+        <div class="log_cls">
+          <a href="/accaunt/signup/">
+            <button class="btn btn-primary btn_login" type="button" name="button">Sign Up</button>
+          </a>
+          <a href="/accaunt/login/">
+            <button  class="btn btn-primary btn_login" type="button" name="button">
+              Log In <img class="user_img" src="{% static '../static/img/user.png' %}" alt="" />
+            </button>
+          </a>
+        </div>
+        {% endif %}
+        {% endblock %}
+
+    </div>
+    <div class="container_1">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+  </body>
+</html>

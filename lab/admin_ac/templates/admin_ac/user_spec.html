@@ -1,0 +1,35 @@
+  {% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block login %}
+<a href="/admin/">
+  <img class="admin_img" src="{% static '../static/img/king1.png' %}" alt="" />
+</a>
+<a href="/admin/logout/">
+  <button class="btn btn-primary btn_login btn_logout" type="button" name="button">Log Out</button>
+</a>
+{% endblock %}
+
+{% block content %}
+{% if user %}
+<h1 class = "text">{{user.first_name}} {{user.last_name}} ({{user.username}}) </h1>
+{% if user.is_activ != False %}
+<a href="/admin/locks/user/{{user.id}}" class="a_loc">
+  <button class="button_add loc_pos" type="button" name="button">Locks</button>
+</a>
+{% else %}
+<a href="/admin/unlocks/user/{{user.id}}" class="a_loc">
+  <button class="button_add loc_pos" type="button" name="button">UnLocks</button>
+</a>
+{% endif %}
+<a href="/admin/del/user/{{user.id}}/">
+  <button class="button_add del_pos" type="button" name="button">Delit</button>
+</a>
+<p class="text txt_cash">
+  cash {{user.money}} $
+  </p>
+  {% else %}
+
+  <img src="{% static '../static/img/anonym.png' %}" class="img-circle" id="imgan" alt="" />
+{% endif %}
+{% endblock %}

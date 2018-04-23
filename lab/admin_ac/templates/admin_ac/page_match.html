@@ -1,0 +1,86 @@
+{% extends 'admin_ac/page.html' %}
+
+{% block content1 %}
+<div class="list_nav">
+  <ul class="nav nav-tabs">
+    <li >
+      <a href="/admin/user/">Users</a>
+    </li>
+    <li >
+      <a href="/admin/club/">Clubs</a>
+    </li>
+    <li class="active ">
+      <a href="/admin/match/">Match</a>
+    </li>
+    <li>
+      <a href="/admin/logs/">Logs</a>
+    </li>
+    <li>
+      <a href="/admin/bets/">Bets</a>
+    </li>
+    </ul>
+</div>
+<div class="obj_content">
+  <div class="obj_content1">
+    <table class="table">
+        <thead>
+          <tr class="w_text">
+            <th>
+              #
+            </th>
+            <th>
+              club_1
+            </th>
+            <th>
+              club_2
+            </th>
+            <th>
+              date
+            </th>
+            <th>
+              cofficient
+            </th>
+            <th>
+              result
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bord1">
+          {% for item in matchs %}
+            <tr class="w_text">
+              <th scope="row">
+              <a href="/admin/match_spec/{{item.0}}">{{ item.0 }}</a>
+              </th>
+                <td>
+                  {{ item.1 }}
+                </td>
+                <td>
+                  {{ item.2 }}
+                </td>
+                <td>
+                  {{ item.3 }}
+                </td>
+                <td>
+                  {{ item.4 }}
+                </td>
+                <td>
+                  {% if item.5 == None and item.6 == None %}
+                  doesn't finish
+                  {% else %}
+                  {{item.5}} : {{item.6}}
+                  {% endif %}
+                </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+  </div>
+  <div class="obj_content2">
+    <a href="/admin/match_create/">
+      <button id="click_me" class="button_add" type="button" name="button">
+        <i class="icon-plus btn_i"> </i>
+      </button>
+    </a>
+  </div>
+</div>
+{% endblock %}

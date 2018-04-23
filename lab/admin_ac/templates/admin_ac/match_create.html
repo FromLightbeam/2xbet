@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block login %}
+<a href="/admin/">
+  <img class="admin_img" src="{% static '../static/img/king1.png' %}" alt="" />
+</a>
+<a href="/admin/logout/">
+  <button class="btn btn-primary btn_login btn_logout" type="button" name="button">Log Out</button>
+</a>
+{% endblock %}
+
+{% block content %}
+
+  <form class="form_create" action="/admin/match_create/" method="post">{% csrf_token %}
+    <h2 class="title_c">Match create</h2>
+      {{form.as_p}}
+      <button class="btn btn-primary" type="submit" name="button">Create</button>
+  </form>
+  <script>
+    $(function(){
+      $('#id_date').datepicker();
+    });
+  </script>
+{% endblock %}

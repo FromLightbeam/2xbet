@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+{% if q %}
+<div class="user_contr">
+  <h1 class = "text h1_t">{{user.first_name}} {{user.last_name}} ({{user.username}}) </h1>
+  <div class="menu_user text">
+    <ul >
+      <li id="addclick" >add money</li>
+      <li id="withdrawclick" >withdraw money</li>
+      <li><a href="/">matchs</a></li>
+    </ul>
+  </div>
+  <p  id="textmoney" class="text p_textmoney">
+    you have {{user.money}} $
+    </p>
+</div>
+{% block content1 %}
+<div class="list_nav">
+  <ul class="nav nav-tabs">
+    <li class="active ">
+      <a href="/accaunt/user/">Bet</a>
+    </li>
+    <li>
+      <a href="/accaunt/user_log/">Money Logs</a>
+    </li>
+    </ul>
+</div>
+
+<div class="obj_content">
+  <table class="table">
+    <thead>
+      <tr class="w_text">
+        <th>
+          #
+        </th>
+        <th>
+        match
+        </th>
+        <th>
+          money
+        </th>
+        <th>
+          cofficient
+        </th>
+        <th>
+         date
+        </th>
+      </tr>
+    </thead>
+    <tbody class="bord">
+      {% for item in bets %}
+      <tr class="w_text">
+        <th scope="row">
+         {{item.0}}
+        </th>
+        <td>
+          {{item.13}} -{{item.14}}
+        </td>
+        <td>
+          {{item.3}} $
+        </td>
+        <td>
+          {{item.10}}
+        </td>
+        <td>
+          {{item.7}}
+        </td>
+          </tr>
+          </a>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+<!-- add money -->
+<div id="popup" class="popup"  >
+  <h2 class="popup_title" >money transactions</h2>
+  <form class="" id="form_club"  >{% csrf_token %}
+    <input class="in_club" id="name" type="text" name="name" value=""><br>
+    <button id="create" class="btn_club" type="submit" name="button">enter</button>
+  </form>
+    <div id="btn_close" class="btn_close"><i class="icon-remove icon-white"></i></div>
+  </div>
+
+  <script >
+  var urlstring = '';
+  $('#name').numeric()
+
+  $(document).on('submit', '#form_club', function(e){
+    e.preventDefault();
+    $.ajax({
+      type:'POST',
+      url: urlstring,
+      data: {
+        name:$('#name').val(),
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+      },
+      success:function(data){
+        if (data.money){
+        $('#textmoney').text('you have '+ data.money + ' $')
+        $('#name').val('');
+        $('#hide_layout, #popup').fadeOut(300);
+      }
+      if(data.error) {
+          $('#name').val(data.error);
+      }
+      }
+    });
+  });
+
+  $(function() {
+    $('#popup').hide();
+    $('#hide_layout').hide()
+    $('#hide_layout').css({opacity: .5});
+
+    alignCenter($('#popup'));
+
+    $(window).resize(function(){
+      alignCenter($('#popup'));
+    })
+    $('#create').click(function() {
+
+    })
+
+    $('#addclick').click(function(){
+      urlstring = '/accaunt/addmoney/';
+      $('#hide_layout, #popup').fadeIn(300);
+    })
+
+    $('#withdrawclick').click(function(){
+      urlstring = '/accaunt/withdrawmoney/';
+      $('#hide_layout, #popup').fadeIn(300);
+    })
+
+    $('#btn_close, #hide_layout').click(function(){
+      $('#hide_layout, #popup').fadeOut(300);
+      $('#name').val('');
+    })
+
+
+    function alignCenter(elem) {
+      elem.css({
+        left: ($(window).width() - elem.width() - 750) / 2 + 'px',
+        top: ($(window).height() - elem.height()) / 2 + 'px'
+      })
+    }
+  })
+  </script>
+
+  <div id="hide_layout" class="hide_layout" ></div>
+
+<!-- end -->
+
+  {% else %}
+
+  <img src="{% static '../static/img/anonym.png' %}" class="img-circle" id="imgan" alt="" />
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class = "Lister">
+  <ul class = "Lister_2" >
+      {% for iter in match %}
+      <ul class ="menu">
+        {% if iter.7 %}
+        <li>{{iter.1}}-{{iter.2}}</li>
+        <li><em>Date</em><span>{{iter.3}}</span></li>
+        <li><em>Cof.</em><span>{{iter.4}}</span></li>
+        {% else %}
+        <a href = "/rate/{{iter.0}}/">
+         <li>{{iter.1}}-{{iter.2}}</li>
+         <li><em>Date</em><span>{{iter.3}}</span></li>
+         <li><em>Cof.</em><span>{{iter.4}}</span></li>
+        </a>
+        {% endif %}
+        </ul>
+
+      {% endfor %}
+    </li>
+  </ul>
+</div>
+{% endblock %}
