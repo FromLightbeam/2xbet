@@ -6,6 +6,9 @@ urlpatterns = [
 
     url(r'^$', views.login),
     url(r'^user/', views.page),
+    url(r'^event/$', views.events),
+    url(r'^event/create/', views.create_event),
+    url(r'^event/del_event/(?P<id>[0-9]+)', views.deleting_event),
     url(r'^club/', views.club),
     url(r'^logs/', views.logs),
     url(r'^match/', views.match),

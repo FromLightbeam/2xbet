@@ -113,27 +113,5 @@ def get_logs_money(id):
     return ans
 
 def get_users_bet(id):
-    anst =[]
-    ans11 = []
-    cur = connection.cursor()
-    cur.execute("""select id_bet, id_bet_match, id_user, count_money
-                        from bet  where id_user='{0}'""".format(id))
-    ans = cur.fetchall()
-    for i in ans:
-        for ii in i:
-            anst.append(ii)
-        cur.execute("select id_club, id_match from bet_match where id_bet_match='{0}'".format(i[1]))
-        ans1 = cur.fetchall()
-        for i in ans1[0]:
-            anst.append(i)
-        cur.execute("select id_match, data, club_id_1, club_id_2, coefficient, goal_1, goal_2 from match where id_match='{0}'".format(ans1[0][1]))
-        ans2 = cur.fetchall()
-        for i in ans2[0]:
-            anst.append(i)
-        cur.execute("select name from club where id_club='{0}' or id_club='{1}'".format(ans2[0][2] ,ans2[0][3]))
-        ans3 = cur.fetchall()
-        anst.append(ans3[0][0])
-        anst.append(ans3[1][0])
-        ans11.append(anst)
-        anst=[]
-    return ans11
+
+    return []

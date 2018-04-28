@@ -60,6 +60,7 @@ def page(request):
     else:
         return HttpResponseRedirect('/admin/')
 
+
 def club(request):
     if 'admin_user_id' in request.session:
         admin_id = request.session['admin_user_id']
@@ -69,14 +70,57 @@ def club(request):
     else:
         return HttpResponseRedirect('/admin/')
 
+
 def match(request):
     if 'admin_user_id' in request.session:
         admin_id = request.session['admin_user_id']
         admin = user_db_conect.get_user_by_id(admin_id)
-        matchs = admin_conector.get_all_match()
-        return render(request, 'admin_ac/page_match.html', {'admin': admin, 'matchs': matchs, })
+        matches = admin_conector.get_all_match()
+
+        for match in matches:
+            if match.get('goal1') == None and match.get('goal2') == None :
+                match['result'] = 'doesn\'t finish'
+            else:
+                match['result'] = '{0} : {1}'.format(match['goal1'], match['goal2'])
+
+        return render(request, 'admin_ac/page_match.html', {'admin': admin, 'matches': matches, })
     else:
         return HttpResponseRedirect('/admin/')
+
+
+def events(request):
+    if 'admin_user_id' in request.session:
+        admin_id = request.session['admin_user_id']
+        admin = user_db_conect.get_user_by_id(admin_id)
+        matches = admin_conector.get_all_match()
+        matches_with_events = admin_conector.get_events(matches)
+        print(matches)
+        return render(request, 'admin_ac/page_events.html', {'admin': admin, 'matches': matches_with_events,})
+    else:
+        return HttpResponseRedirect('/admin/')
+
+
+def create_event(request):
+    if 'admin_user_id' in request.session:
+        if request.method == 'GET':
+            form = admin_forms.EventCreate
+            return render(request, 'admin_ac/event_create.html', {'form': form, })
+        if request.method == 'POST':
+            form = admin_forms.EventCreate(request.POST)
+            if form.is_valid():
+                events = {}
+                events['win first'] = form.cleaned_data['coeff_win_first']
+                events['draw'] = form.cleaned_data['coeff_draw']
+                events['win second'] = form.cleaned_data['coeff_win_second']
+
+                admin_conector.add_events(form.cleaned_data['match_id'],
+                                            events)
+            return HttpResponseRedirect('/admin/event/')
+
+def deleting_event(request, id=None):
+    if 'admin_user_id' in request.session:
+        admin_conector.del_events(int(id))
+        return HttpResponseRedirect('/admin/event/')
 
 
 def logs(request):
@@ -88,12 +132,14 @@ def logs(request):
     else:
         return HttpResponseRedirect('/admin/')
 
+
 def user_spec(request, id=1):
     if 'admin_user_id' in request.session:
         admin_id = request.session['admin_user_id']
         admin = user_db_conect.get_user_by_id(admin_id)
         user = user_db_conect.get_user_by_id(int(id))
         return render(request, 'admin_ac/user_spec.html', {'admin': admin, 'user': user, })
+
 
 def del_user(request, id=None):
     if 'admin_user_id' in request.session:
@@ -102,12 +148,14 @@ def del_user(request, id=None):
         response = HttpResponseRedirect('/admin/')
         return response
 
+
 def locks_user(request, id):
     if 'admin_user_id' in request.session:
         admin_id = request.session['admin_user_id']
         user_db_conect.locks_user_by_id(int(id))
         response = HttpResponseRedirect('/admin/')
         return response
+
 
 def unlocks_user(request, id):
     if 'admin_user_id' in request.session:
@@ -146,8 +194,7 @@ def match_create(request):
                 if form.cleaned_data['club_1'] != form.cleaned_data['club_2']:
                     admin_conector.match_create(form.cleaned_data['club_1'],
                                                 form.cleaned_data['club_2'],
-                                                form.cleaned_data['date'],
-                                                form.cleaned_data['coefficient'] )
+                                                form.cleaned_data['date'], )
             return HttpResponseRedirect('/admin/match/')
 
 def bet_test(id_match, id_win, cofficient):
@@ -165,45 +212,44 @@ def match_spec(request, id=None):
         if request.method == 'GET':
             match = admin_conector.get_match_by_id(int(id))
             form = admin_forms.MatchEdit()
-            form.fields['coefficient'].initial = match[6]
-            form.fields['date'].initial = match[3]
-            form.fields['club_1'].initial = match[1]
-            form.fields['club_2'].initial = match[2]
-            if match[4] != None and match[5] != None:
-                form.fields['gool_club_1'].initial = match[4]
-                form.fields['gool_club_2'].initial = match[5]
+            form.fields['date'].initial = match['match_date']
+            print(match)
+            form.fields['club_1'].initial = match['club_id_1']
+            form.fields['club_2'].initial = match['club_id_2']
+            if match['goal_1'] != None and match['goal_2'] != None:
+                form.fields['gool_club_1'].initial = match['goal_1']
+                form.fields['gool_club_2'].initial = match['goal_2']
             return render(request, 'admin_ac/match_spec.html', {'form': form, 'match': match, })
         if request.method == 'POST':
             form = admin_forms.MatchEdit(request.POST)
+            print("\n\nhere\n\n")
             if form.is_valid():
                 match = admin_conector.get_match_by_id(int(id))
-                if form.cleaned_data['gool_club_1'] != None and form.cleaned_data['gool_club_2'] != None:
-                    if match[7] == False:
-                        test = True
-                        if form.cleaned_data['gool_club_1']  < form.cleaned_data['gool_club_2']:
-                            bet_test(match[0], match[2], match[6])
-                            admin_conector.add_game(form.cleaned_data['club_1'])
-                            admin_conector.add_game(form.cleaned_data['club_2'])
-                        elif  form.cleaned_data['gool_club_1']  > form.cleaned_data['gool_club_2']:
-                            bet_test(match[0], match[1], match[6])
-                            admin_conector.add_game(form.cleaned_data['club_1'])
-                            admin_conector.add_game(form.cleaned_data['club_2'])
-                        else:
-                            bet_test(match[0], False, match[6])
-                            admin_conector.add_game(form.cleaned_data['club_1'])
-                            admin_conector.add_game(form.cleaned_data['club_2'])
-                    else:
-                        test = True
-                else:
-                    test = False
+                # if form.cleaned_data['gool_club_1'] != None and form.cleaned_data['gool_club_2'] != None:
+                #     if match[7] == False:
+                #         test = True
+                #         if form.cleaned_data['gool_club_1']  < form.cleaned_data['gool_club_2']:
+                #             bet_test(match[0], match[2], match[6])
+                #             admin_conector.add_game(form.cleaned_data['club_1'])
+                #             admin_conector.add_game(form.cleaned_data['club_2'])
+                #         elif  form.cleaned_data['gool_club_1']  > form.cleaned_data['gool_club_2']:
+                #             bet_test(match[0], match[1], match[6])
+                #             admin_conector.add_game(form.cleaned_data['club_1'])
+                #             admin_conector.add_game(form.cleaned_data['club_2'])
+                #         else:
+                #             bet_test(match[0], False, match[6])
+                #             admin_conector.add_game(form.cleaned_data['club_1'])
+                #             admin_conector.add_game(form.cleaned_data['club_2'])
+                #     else:
+                #         test = True
+                # else:
+                #     test = False
                 admin_conector.update_match(id,
                                             form.cleaned_data['club_1'],
                                             form.cleaned_data['club_2'],
                                             form.cleaned_data['date'],
-                                            form.cleaned_data['coefficient'],
                                             form.cleaned_data['gool_club_1'],
-                                            form.cleaned_data['gool_club_2'],
-                                            test)
+                                            form.cleaned_data['gool_club_2'], )
                 return HttpResponseRedirect('/admin/match/')
 
 

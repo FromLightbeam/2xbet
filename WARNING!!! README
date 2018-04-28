@@ -1,0 +1,8 @@
+для инита бд
+	1. TableCreation.sql
+	2. OtherProcCreation.sql
+	   MathcFunctions.sql
+	   EventFunctions.sql
+
+Сейчас не работает простой user. Админка работает три кэффа вместо одного. Ставки(bet) тоже не работают
+

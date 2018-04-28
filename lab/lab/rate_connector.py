@@ -1,14 +1,19 @@
 from django.db import connection
+
+import cx_Oracle
 import datetime
 
-def get_match_by_id_rate(id):
+from lab.helper import fetch_one_dict_from_cursor
+
+def get_match_by_id_rate(id_match):
     cur = connection.cursor()
-    cur.execute("select id_match, (select name from club where id_club = club_id_1)as cl1,"
-                "(select name from club where id_club = club_id_2)as cl2, data, coefficient, "
-                "club_id_1, club_id_2 " #here was tested
-                "from match where id_match = {0}".format(id));
-    ans = cur.fetchall()
-    return ans
+    ans = cur.callfunc('get_match_by_id_rate', cx_Oracle.CURSOR, [id_match, ])
+    # cur.execute("select id_match, (select name from club where id_club = club_id_1)as cl1,"
+    #             "(select name from club where id_club = club_id_2)as cl2, data, coefficient, "
+    #             "club_id_1, club_id_2 " #here was tested
+    #             "from match where id_match = {0}".format(id));
+    # ans.fetchall()
+    return fetch_one_dict_from_cursor(ans)
 
 def bet_put(idu, id_m, id_c, money):
     date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")

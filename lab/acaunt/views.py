@@ -61,7 +61,7 @@ def logout(request):
         user_id = request.session['user_id']
         user = user_db_conect.get_user_by_id(user_id)
         del request.session['user_id']
-        log_conector.add_log(user['id'], 'log out')
+        # log_conector.add_log(user['id'], 'log out')
     except KeyError:
         pass
     return response

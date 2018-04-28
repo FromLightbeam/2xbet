@@ -11,15 +11,14 @@
 {% endblock %}
 {% block content %}
 
- <form class="form_create1" action="/admin/match_spec/{{match.0}}" method="post">{% csrf_token %}
+<!-- <p style="color: green">{{match.id_match}}</p> -->
+
+ <form class="form_create1" action="/admin/match_spec/{{match.id_match}}" method="post">{% csrf_token %}
    <h2 class="title_c t_m" >Edit match</h2>
    <div class="formmatch1">
      {{form.as_p}}
    </div>
    <button class="btn btn-primary btn_sv" type="submit" name="button">Save</button>
-   <a class="form_create" href="/admin/del_match/{{match.0}}">
-     <button class="btn btn-primary btn_dl" type="button" name="button">Delete</button>
-   </a>
  </form>
 
 {% endblock %}

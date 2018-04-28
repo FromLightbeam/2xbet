@@ -5,20 +5,20 @@
 <div class = "Up_Listener">
   <ul >
       <ul class = "Center_f" >
-            <li><span>{{ match.0.1 }}</span></li>
+            <li><span>{{ match.name_club1 }}</span></li>
 
       </ul>
       <ul class = "Center_f" >
-            <li><span>{{ match.0.2 }}</span></li>
+            <li><span>{{ match.name_club2 }}</span></li>
       </ul>
   </ul>
 </div>
 <div class = "Down_Listener">
-    <ul class = Center_f_data>{{ match.0.3 }}</ul>
-    <form action="/bet_put/{{match.0.0}}" method="POST">{% csrf_token %}
+    <ul class = Center_f_data>{{ match.match_date }}</ul>
+<!--     <form action="/bet_put/{{match.0.0}}" method="POST">{% csrf_token %}
       {{form.as_p}}
       <button class="btn btn-primary" type="submit" name="button">put</button>
-    </form>
+    </form> -->
 </div>
 </div>
 {% endblock %}

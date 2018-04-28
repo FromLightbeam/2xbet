@@ -1,0 +1,58 @@
+{% extends 'admin_ac/page.html' %}
+
+{% block content_admin %}
+<div class="obj_content">
+    <table class="table">
+      <thead>
+        <tr class="w_text">
+            <th>
+                #
+            </th>
+            <th>
+                match
+            </th>
+            <th>
+                date
+            </th>
+            <th>
+                events
+            </th>
+            <th>
+                
+            </th>
+        </tr>
+      </thead>
+      <tbody class="bord1">
+        {% for item in matches %}
+          <tr class="w_text">
+            <th scope="row">
+              {{ item.id_match }}
+            </th>
+              <td>
+                {{ item.name_club1 }} - {{ item.name_club2 }}
+              </td>
+              <td>
+                {{ item.date_match }}
+              </td>
+              <td>
+                {% for event in item.events %}
+                    <p>{{ event.name_event }}: {{ event.coefficient }} <p>
+                {% endfor %}
+              </td>
+                <td>
+                    <a class="a_poss" href="/admin/event/del_event/{{ item.id_match }}"><i class="icon-remove icon-white"></i></a>
+                </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="obj_content2">
+    <a href="/admin/event/create">
+      <button id="click_me" class="button_add" type="button" name="button">
+        <i class="icon-plus btn_i"> </i>
+      </button>
+    </a>
+  </div>
+</div>
+
+{% endblock %}

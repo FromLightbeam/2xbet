@@ -1,25 +1,6 @@
 {% extends 'admin_ac/page.html' %}
 
-{% block content1 %}
-<div class="list_nav">
-  <ul class="nav nav-tabs">
-    <li >
-      <a href="/admin/user/">Users</a>
-    </li>
-    <li >
-      <a href="/admin/club/">Clubs</a>
-    </li>
-    <li class="active ">
-      <a href="/admin/match/">Match</a>
-    </li>
-    <li>
-      <a href="/admin/logs/">Logs</a>
-    </li>
-    <li>
-      <a href="/admin/bets/">Bets</a>
-    </li>
-    </ul>
-</div>
+{% block content_admin %}
 <div class="obj_content">
   <div class="obj_content1">
     <table class="table">
@@ -38,37 +19,27 @@
               date
             </th>
             <th>
-              cofficient
-            </th>
-            <th>
               result
             </th>
           </tr>
         </thead>
         <tbody class="bord1">
-          {% for item in matchs %}
+          {% for item in matches %}
             <tr class="w_text">
               <th scope="row">
-              <a href="/admin/match_spec/{{item.0}}">{{ item.0 }}</a>
+              <a href="/admin/match_spec/{{item.id_match}}">{{ item.id_match }}</a>
               </th>
                 <td>
-                  {{ item.1 }}
+                    {{ item.name_club1 }}
                 </td>
                 <td>
-                  {{ item.2 }}
+                    {{ item.name_club2 }}
                 </td>
                 <td>
-                  {{ item.3 }}
+                    {{ item.match_date }}
                 </td>
                 <td>
-                  {{ item.4 }}
-                </td>
-                <td>
-                  {% if item.5 == None and item.6 == None %}
-                  doesn't finish
-                  {% else %}
-                  {{item.5}} : {{item.6}}
-                  {% endif %}
+                    {{ item.result }}
                 </td>
             </tr>
           {% endfor %}

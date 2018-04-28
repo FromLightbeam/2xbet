@@ -13,21 +13,20 @@ def index(request):
     if('user_id' in request.session):
         user_id = request.session['user_id']
         user = us.get_user_by_id(user_id)
-        q = True
-        return render(request, 'index.html', {'user': user, 'q': q, 'match': mch})
+        return render(request, 'index.html', {'user': user, 'q': True, 'match': mch})
     else:
-        q = False
-        return render(request, 'index.html', {'q': q,'match': mch})
+        return render(request, 'index.html', {'q': False,'match': mch})
 
-def rate(request ,id1):
+def rate(request ,id_match):
     if ('user_id' in request.session):
-        mch  = rate_connector.get_match_by_id_rate(id1)
-        user_id = request.session['user_id']
-        user = us.get_user_by_id(user_id)
-        chois = ((mch[0][5],mch[0][1]), (mch[0][6],mch[0][2]))
-        form = forms.BetMake({'choise': chois, })
+        match  = rate_connector.get_match_by_id_rate(id_match)
+        user = us.get_user_by_id(request.session['user_id'])
+        # choice = ((mch[0][5],mch[0][1]), (mch[0][6],mch[0][2]))
+        # print(choice)
+        # form = forms.BetMake({'choice': choice, })]
+        print(match)
         q = True
-        return render(request, 'lab/rate.html', {'user': user, 'q': q, 'match': mch, 'form': form, })
+        return render(request, 'lab/rate.html', {'user': user, 'q': q, 'match': match, })
     else:
         q = False
         return render(request, 'lab/rate.html', {'q': q, })

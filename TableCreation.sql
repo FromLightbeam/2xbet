@@ -1,13 +1,19 @@
+
+
 drop table logs ;
 drop table action;
 drop table money_log;
 drop table action_money;
 drop table bet;
-drop table bet_match;
+
 drop table users;
 drop table user_group;
+
+drop table Event;
 drop table Match;
 drop table Club;
+
+
 
 
 CREATE TABLE Club(
@@ -23,8 +29,7 @@ CREATE TABLE Match(
   CONSTRAINT pk_match PRIMARY KEY (id_match),
   club_id_1 INT NOT NULL,
   club_id_2 INT NOT NULL,
-  data DATE NOT NULL,
-  coefficient decimal DEFAULT 0,
+  match_date DATE NOT NULL,
   goal_1 INT,
   goal_2 INT,
   CONSTRAINT club_pk_1
@@ -33,6 +38,16 @@ CREATE TABLE Match(
   CONSTRAINT club_pk_2
     FOREIGN KEY(club_id_2) 
     REFERENCES Club(id_club)
+);
+
+CREATE TABLE Event(
+    id_event INT GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
+    CONSTRAINT pk_event PRIMARY KEY (id_event),
+    name_event VARCHAR(50),
+    coefficient NUMBER,
+    id_match INT NOT NULL,
+    CONSTRAINT fk_event_match
+        FOREIGN KEY(id_match) REFERENCES Match(id_match)
 );
 
 CREATE TABLE User_group(
@@ -82,26 +97,14 @@ CREATE TABLE Action_money(
   name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE Bet_match(
-  id_bet_match INT GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
-  CONSTRAINT pk_bet_match PRIMARY KEY (id_bet_match),
-  id_club INT NOT NULL,
-  id_match INT NOT NULL,
-  date_time timestamp,
-  CONSTRAINT pk_club_bet
-    FOREIGN KEY(id_club) REFERENCES Club(id_club),
-  CONSTRAINT pk_match_bet
-    FOREIGN KEY(id_match) REFERENCES Match(id_match)
-);
-
 CREATE TABLE Bet(
   id_bet INT GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
   CONSTRAINT pk_bet PRIMARY KEY (id_bet),
   count_money INT NOT NULL,
-  id_bet_match INT NOT NULL,
+  id_event INT NOT NULL,
   id_user INT NOT NULL,
-  CONSTRAINT pk_bet_match_bet
-    FOREIGN KEY(id_bet_match) REFERENCES Bet_match(id_bet_match),
+  CONSTRAINT fk_bet_event
+    FOREIGN KEY(id_event) REFERENCES Event(id_event),
   CONSTRAINT pk_user_bet
     FOREIGN KEY(id_user) REFERENCES Users(id_user)
 );
@@ -122,6 +125,7 @@ CREATE TABLE Money_log(
   CONSTRAINT pk_action_money_money_log
     FOREIGN KEY(id_action_money) REFERENCES Action_money(id_action_money)
 );
+
 
 
 DECLARE
