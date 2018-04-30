@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'^$', views.index ),
     url(r'^rate/(?P<id_match>[0-9]+)/', views.rate),
     url(r'^admin/', include('admin_ac.urls')),
-    url(r'^bet_put/(?P<id1>[0-9]+)',views.bet_put),
+    url(r'^bet_put/(?P<id_match>[0-9]+)',views.bet_put),
 ]

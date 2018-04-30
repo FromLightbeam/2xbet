@@ -15,10 +15,11 @@
 </div>
 <div class = "Down_Listener">
     <ul class = Center_f_data>{{ match.match_date }}</ul>
-<!--     <form action="/bet_put/{{match.0.0}}" method="POST">{% csrf_token %}
-      {{form.as_p}}
-      <button class="btn btn-primary" type="submit" name="button">put</button>
-    </form> -->
+    <form action="/bet_put/{{match.id_match}}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-primary" type="submit" name="button">put</button>
+    </form>
 </div>
 </div>
 {% endblock %}

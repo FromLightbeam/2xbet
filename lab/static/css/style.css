@@ -402,3 +402,10 @@ margin-top: 80px;
   list-style: none;
   background-color:#2F2E33;
 }
+
+.logo {
+    margin-top: 3px;
+    margin-left: 5px;  
+    height: 90%;
+    width: 70px; 
+}

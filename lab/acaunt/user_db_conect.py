@@ -1,4 +1,7 @@
 from django.db import connection
+
+from lab.helper import fetch_many_dict_from_cursor, fetch_one_dict_from_cursor
+
 import cx_Oracle
 
 
@@ -113,5 +116,10 @@ def get_logs_money(id):
     return ans
 
 def get_users_bet(id):
-
-    return []
+    #   match date money event coefficient 
+    cur = connection.cursor()
+    ans = cur.callfunc('get_users_bet', cx_Oracle.CURSOR, [id, ])
+    # print(ans)
+    result = fetch_many_dict_from_cursor(ans)
+    print(result)
+    return result

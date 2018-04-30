@@ -78,6 +78,13 @@ def match_del(id):
 
 ################################################################################
 
+def get_event(id_match):
+    cur = connection.cursor()
+
+    ans = cur.callfunc('get_events_by_match_id', cx_Oracle.CURSOR, [id_match, ])
+    return fetch_many_dict_from_cursor(ans)
+
+
 def get_events(matches):
     cur = connection.cursor()
     for match in matches:

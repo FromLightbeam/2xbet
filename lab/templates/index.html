@@ -4,18 +4,17 @@
 
 <div class = "Lister">
   <ul class = "Lister_2" >
-      {% for iter in match %}
+      {% for match in matches %}
       <ul class ="menu">
-        {% if iter.7 %}
-        <li>{{iter.1}}-{{iter.2}}</li>
-        <li><em>Date</em><span>{{iter.3}}</span></li>
-        <li><em>Cof.</em><span>{{iter.4}}</span></li>
-        {% else %}
-        <a href = "/rate/{{iter.0}}/">
-         <li>{{iter.1}}-{{iter.2}}</li>
-         <li><em>Date</em><span>{{iter.3}}</span></li>
-         <li><em>Cof.</em><span>{{iter.4}}</span></li>
+        {% if q %}
+        <a href = "/rate/{{match.id_match}}/">
+            <li>{{match.name_club1}} - {{match.name_club2}}</li>
+            <li><em>Date</em><span>{{match.match_date}}</span></li>
         </a>
+
+        {% else %}
+            <li>{{match.name_club1}} - {{match.name_club2}}</li>
+            <li><em>Date</em><span>{{match.match_date}}</span></li>
         {% endif %}
         </ul>
 
@@ -24,3 +23,4 @@
   </ul>
 </div>
 {% endblock %}
+

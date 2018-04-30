@@ -34,39 +34,45 @@
     <thead>
       <tr class="w_text">
         <th>
-          #
+            #
         </th>
         <th>
-        match
+            match
         </th>
         <th>
-          money
+            date
         </th>
         <th>
-          cofficient
+            money
         </th>
         <th>
-         date
+            event
+        </th>
+        <th>
+            coefficient
         </th>
       </tr>
     </thead>
     <tbody class="bord">
-      {% for item in bets %}
+      {% for bet in bets %}
       <tr class="w_text">
         <th scope="row">
-         {{item.0}}
+         {{ bet.id_bet }}
         </th>
         <td>
-          {{item.13}} -{{item.14}}
+          {{ bet.name_club1 }} - {{ bet.name_club2 }}
         </td>
         <td>
-          {{item.3}} $
+          {{ bet.match_date }}
         </td>
         <td>
-          {{item.10}}
+          {{ bet.count_money }} $
         </td>
         <td>
-          {{item.7}}
+          {{ bet.name_event }}
+        </td>
+        <td>
+          {{ bet.coefficient }}
         </td>
           </tr>
           </a>
