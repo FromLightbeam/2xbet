@@ -32,30 +32,3 @@ BEGIN
 END;
 /
 
-
-
---declare
---  result sys_refcursor;
---  id_bet BET.ID_BET%TYPE;
---    id_event BET.ID_BET%TYPE;
---
---  name_event EVENT.NAME_EVENT%TYPE; -- guessing the data type
---  coeff EVENT.COEFFICIENT%TYPE;
---begin
---  result := get_users_bet(2);
---  loop
---    fetch result into id_bet, id_event; -- and other columns if needed
---    exit when result%notfound;
---         dbms_output.put_line('event');    
---
---     dbms_output.put_line(id_event);   
---              dbms_output.put_line('bet');    
---
---
---    dbms_output.put_line(id_bet);    
-----    dbms_output.put_line(name_event);
-----    dbms_output.put_line(coeff);
---
---  end loop;
---end;
---/
